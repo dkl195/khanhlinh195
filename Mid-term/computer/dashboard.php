@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_computer'])) {
         } catch (PDOException $e) {
             $error = "Error adding computer: " . $e->getMessage();
         }
-    }
+    }Z
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_computer'])) {
