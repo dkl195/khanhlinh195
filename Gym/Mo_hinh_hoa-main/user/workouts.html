@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitTrack — Workouts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="appShell">
+    <div class="bg">
+      <div class="bg__image" aria-hidden="true"></div>
+      <div class="bg__glow bg__glow--a" aria-hidden="true"></div>
+      <div class="bg__glow bg__glow--b" aria-hidden="true"></div>
+      <div class="bg__vignette" aria-hidden="true"></div>
+    </div>
+
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <a class="brand" href="/app">
+          <span class="brand__dot" aria-hidden="true"></span>
+          <span class="brand__name">FitTrack</span>
+        </a>
+
+        <nav class="nav" aria-label="App">
+          <a class="nav__link" href="/app">Home</a>
+          <a class="nav__link" href="/app/workouts">Workout</a>
+          <a class="nav__link" href="/app/progress">Progress</a>
+        </nav>
+
+        <div class="topbar__actions">
+          <div class="avatarMenu">
+            <button class="avatarBtn" type="button" aria-label="Account" data-avatar>U</button>
+            <div class="avatarPanel" data-avatar-menu>
+              <div class="avatarPanel__top">
+                <div class="avatarPanel__name" data-user-name>Loading…</div>
+                <div class="avatarPanel__email" data-user-email></div>
+              </div>
+              <div class="avatarPanel__actions">
+                <a class="avatarPanel__link" href="/app">Dashboard</a>
+                <form action="/auth/logout" method="post">
+                  <button class="btn btn--primary avatarPanel__logout" type="submit">Logout</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <button class="iconbtn topbar__menu" type="button" aria-label="Open menu" data-menu>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="appPage workoutPage" data-workout-library>
+      <div class="container">
+        <section class="workoutLibrary card" data-workout-list-view>
+          <div class="workoutLibrary__head">
+            <h1 class="workoutLibrary__title workoutLibrary__title--rec">Recommend workout plans</h1>
+          </div>
+          <p class="muted workoutLibrary__desc">Choose a guided plan and preview each movement with clear demo images.</p>
+          <h2 class="workoutLibrary__sub">Plans for this week</h2>
+          <div class="workoutPlanList" data-workout-plan-list></div>
+
+          <h2 class="workoutLibrary__sub workoutLibrary__sub--secondary">Lịch của bạn</h2>
+          <p class="workoutLibrary__lead muted">Tự tạo lịch với tên bài, số set, số rep và thời gian (phút) cho từng bài — hiển thị giống thư viện có sẵn.</p>
+          <div class="workoutPlanList" data-custom-plan-list></div>
+          <button class="btn btn--primary btn--lg workoutCreateBtn" type="button" data-open-workout-builder>
+            Tạo lịch mới
+          </button>
+        </section>
+
+        <section class="workoutBuilder" data-workout-builder-view hidden>
+          <div class="workoutDetail__top">
+            <button class="workoutBack" type="button" data-workout-builder-back>←</button>
+            <div class="workoutDetail__planName">TẠO LỊCH</div>
+            <span class="workoutTopSpacer" aria-hidden="true"></span>
+          </div>
+          <article class="workoutDetail__card workoutBuilder__card">
+            <h2 class="workoutDetail__title workoutBuilder__title">Lịch tập của bạn</h2>
+            <div class="workoutBuilder__field field">
+              <label class="field__label" for="custom-plan-title">Tên lịch</label>
+              <input class="field__input profileInput" id="custom-plan-title" type="text" data-custom-plan-title placeholder="Ví dụ: Push Day" autocomplete="off" />
+            </div>
+            <div class="workoutBuilder__rows" data-custom-exercise-rows></div>
+            <button class="btn btn--ghost btn--lg workoutBuilder__addRow" type="button" data-add-exercise-row>+ Thêm bài tập</button>
+            <div class="workoutBuilder__summary muted" data-custom-plan-summary>Tổng thời gian ước lượng: 0 phút</div>
+            <div class="workoutBuilder__actions">
+              <button class="btn btn--primary btn--lg" type="button" data-save-custom-plan>Lưu và xem lịch</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="workoutDetail card" data-workout-detail-view hidden>
+          <div class="workoutDetail__top">
+            <button class="workoutBack" type="button" data-workout-back>←</button>
+            <div class="workoutDetail__planName" data-workout-plan-name>PLAN 1</div>
+            <span class="workoutTopSpacer" aria-hidden="true"></span>
+          </div>
+
+          <article class="workoutDetail__card card">
+            <h2 class="workoutDetail__title" data-workout-title>Full Body Split</h2>
+            <div class="workoutMeta">
+              <span data-workout-total-exercises>0 Exercises</span>
+              <span data-workout-duration>0 Min</span>
+              <span data-workout-calories>0 Cal</span>
+            </div>
+            <div class="workoutExerciseList" data-workout-exercise-list></div>
+          </article>
+
+          <button class="btn btn--primary btn--lg workoutDetail__start" type="button" data-workout-start>START THIS PLAN</button>
+        </section>
+
+        <section class="workoutActive" data-workout-active-view hidden aria-live="polite">
+          <div class="workoutActive__top">
+            <button class="workoutBack" type="button" data-workout-active-back aria-label="Quay lại">←</button>
+            <div class="workoutActive__brand">
+              <span class="workoutActive__label">Đang tập</span>
+              <span class="workoutActive__planTitle" data-active-plan-title>—</span>
+            </div>
+            <span class="workoutTopSpacer" aria-hidden="true"></span>
+          </div>
+
+          <div class="workoutActive__timerCard">
+            <div class="workoutActive__timerK">Thời gian buổi tập</div>
+            <div class="workoutActive__timerV" data-active-elapsed>00:00</div>
+          </div>
+
+          <div class="workoutActive__progress">
+            <div class="workoutActive__progressTrack">
+              <div class="workoutActive__progressFill" data-active-progress-fill></div>
+            </div>
+            <div class="workoutActive__progressMeta">
+              <span data-active-exercise-index>Bài 1 / 1</span>
+              <span data-active-overall-pct>0%</span>
+            </div>
+          </div>
+
+          <article class="workoutActive__current card">
+            <div class="workoutActive__currentHead">
+              <img class="workoutActive__thumb" src="" alt="" data-active-exercise-img />
+              <div>
+                <h2 class="workoutActive__exTitle" data-active-exercise-name>—</h2>
+                <p class="workoutActive__exTarget muted" data-active-exercise-target>—</p>
+              </div>
+            </div>
+            <p class="workoutActive__hint muted">Đánh dấu từng set khi hoàn thành. Khi xong tất cả set, chuyển bài tiếp theo.</p>
+            <div class="workoutActive__sets" data-active-set-pills></div>
+          </article>
+
+          <div class="workoutActive__footer">
+            <button class="btn btn--primary btn--lg workoutActive__next" type="button" data-active-next hidden>Bài tiếp theo</button>
+            <button class="btn btn--ghost btn--lg workoutActive__finish" type="button" data-active-finish hidden>Hoàn thành buổi tập</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div class="mobilemenu" data-mobilemenu>
+      <div class="mobilemenu__panel card" role="dialog" aria-modal="true" aria-label="Mobile menu">
+        <div class="mobilemenu__top">
+          <span class="brand__name">Menu</span>
+          <button class="iconbtn" type="button" aria-label="Close menu" data-menu-close>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        <div class="mobilemenu__links">
+          <a class="mobilemenu__link" href="/app">Home</a>
+          <a class="mobilemenu__link" href="/app/workouts">Workout</a>
+          <a class="mobilemenu__link" href="/app/progress">Progress</a>
+        </div>
+        <div class="mobilemenu__actions">
+          <form action="/auth/logout" method="post" style="width: 100%">
+            <button class="btn btn--primary btn--lg" type="submit" style="width: 100%">Logout</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
+
