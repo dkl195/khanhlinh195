@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Help — PLAYARENA</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                legoYellow: '#ffcf00',
+                legoRed: '#d11013',
+                legoOrange: '#fd8024',
+                legoNavy: '#20214b',
+                legoGrey: '#f8f8f8',
+              },
+              fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+            }
+          }
+        }
+    </script>
+    <style>
+        .brand-heading { font-weight: 900; text-transform: uppercase; font-style: italic; }
+        .hover-scale { transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .group:hover .hover-scale { transform: scale(1.1); }
+        .active-press:active { transform: scale(0.96); filter: brightness(0.9); }
+        .wishlist-btn.is-active svg { fill: #ef4444; stroke: #ef4444; }
+        
+        /* Navbar Custom Styles */
+        .header { background-color: #ffffff; height: 70px; display: flex; align-items: center; padding: 0 40px; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 1000; }
+        .nav-link { text-decoration: none; color: #4b5563; font-weight: 600; font-size: 15px; position: relative; padding: 8px 0; transition: color 0.3s; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #1a1a1a; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link-active { color: #1a1a1a; }
+        .nav-link-active::after { width: 100%; }
+        .search-bar { position: relative; background-color: #f3f4f6; border-radius: 8px; padding: 8px 12px 8px 36px; width: 280px; transition: all 0.3s; }
+        .search-bar:focus-within { background-color: #fff; border-color: #d1d5db; width: 320px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .btn-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #4b5563; transition: all 0.2s; }
+        .btn-icon:hover { background-color: #f3f4f6; color: #1a1a1a; }
+        .badge { position: absolute; top: 4px; right: 4px; background-color: #f39c12; color: white; font-size: 10px; font-weight: bold; padding: 2px 5px; border-radius: 10px; border: 2px solid white; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+
+    <header class="header">
+        <div class="max-w-[1440px] w-full mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-12">
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-[#f39c12] rounded-md flex items-center justify-center text-white font-bold text-lg">B</div>
+                    <span class="text-xl font-extrabold tracking-tight">PLAYARENA</span>
+                </a>
+                <nav class="flex gap-7">
+                    <a href="products.html" class="nav-link">Shop</a>
+                    <a href="about.html" class="nav-link">Discover</a>
+                    <a href="help.html" class="nav-link nav-link-active">Help</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-5">
+                <div class="search-bar hidden sm:block">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+                    <input type="text" class="bg-transparent border-none outline-none text-sm w-full focus:ring-0" placeholder="Search..." aria-label="Search">
+                </div>
+                <div class="flex gap-2">
+                    <button type="button" class="btn-icon" aria-label="Wishlist">♡</button>
+                    <a href="cart.html" class="relative">
+                        <button type="button" class="btn-icon">🛒</button>
+                        <span id="cartCount" class="badge">0</span>
+                    </a>
+                    <a href="login.html" id="accountLink">
+                        <button type="button" id="accountIcon" class="btn-icon bg-gray-600 !text-white">👤</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+    <!-- Hero Section -->
+    <section class="relative w-full h-[500px] bg-gradient-to-br from-legoOrange via-legoRed to-legoNavy overflow-hidden">
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=1920" alt="LEGO help" class="w-full h-full object-cover opacity-50" />
+      </div>
+      <div class="relative z-10 max-w-6xl mx-auto px-4 h-full flex items-center">
+        <div class="text-white">
+          <p class="text-xs font-semibold tracking-[0.3em] text-legoYellow mb-4 uppercase">Help Center</p>
+          <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
+            How Can We<br />
+            <span class="text-legoYellow">Help You Build?</span>
+          </h1>
+          <p class="text-xl text-gray-200 max-w-2xl mb-8">
+            Find answers to common questions about shopping, your account, orders, and more.
+          </p>
+          <a href="products.html" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-legoYellow text-legoNavy text-lg font-bold shadow-lg hover:scale-105 transition-transform">
+            Start Shopping
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="max-w-6xl mx-auto px-4 py-20">
+      <div class="text-center mb-12">
+        <p class="text-xs font-semibold tracking-[0.2em] text-legoRed mb-3 uppercase">Frequently Asked Questions</p>
+        <h2 class="text-4xl md:text-5xl font-black text-legoNavy mb-4">Get Started</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl p-8 border-2 border-legoYellow hover:border-legoRed transition-colors shadow-lg">
+          <div class="w-14 h-14 bg-legoYellow rounded-2xl flex items-center justify-center mb-6">
+            <span class="text-2xl">🛒</span>
+          </div>
+          <h3 class="text-xl font-bold text-legoNavy mb-4">Shopping & Products</h3>
+          <ul class="text-sm text-gray-600 space-y-3">
+            <li>• Visit the <a href="products.html" class="text-legoRed font-semibold hover:underline">Shop</a> to browse all products</li>
+            <li>• Sort by price and search by name</li>
+            <li>• View images, age range, piece count, and theme details</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border-2 border-legoOrange hover:border-legoRed transition-colors shadow-lg">
+          <div class="w-14 h-14 bg-legoOrange rounded-2xl flex items-center justify-center mb-6">
+            <span class="text-2xl">👤</span>
+          </div>
+          <h3 class="text-xl font-bold text-legoNavy mb-4">Account & Sign In</h3>
+          <ul class="text-sm text-gray-600 space-y-3">
+            <li>• Use <a href="login.html" class="text-legoRed font-semibold hover:underline">Sign In</a> to create or login</li>
+            <li>• Account icon changes color when signed in</li>
+            <li>• Secure sessions with JWT tokens</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border-2 border-legoRed hover:border-legoNavy transition-colors shadow-lg">
+          <div class="w-14 h-14 bg-legoRed rounded-2xl flex items-center justify-center mb-6">
+            <span class="text-2xl">🛍️</span>
+          </div>
+          <h3 class="text-xl font-bold text-legoNavy mb-4">Cart & Checkout</h3>
+          <ul class="text-sm text-gray-600 space-y-3">
+            <li>• Products stored in browser (local cart)</li>
+            <li>• View <a href="cart.html" class="text-legoRed font-semibold hover:underline">Cart</a> to update quantities</li>
+            <li>• See total with tax and shipping</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border-2 border-legoNavy hover:border-legoYellow transition-colors shadow-lg">
+          <div class="w-14 h-14 bg-legoNavy rounded-2xl flex items-center justify-center mb-6">
+            <span class="text-2xl">💻</span>
+          </div>
+          <h3 class="text-xl font-bold text-legoNavy mb-4">Technical Support</h3>
+          <ul class="text-sm text-gray-600 space-y-3">
+            <li>• Ensure backend is running (localhost:3000)</li>
+            <li>• Refresh page if products don't load</li>
+            <li>• Contact support for assistance</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Section -->
+    <section class="bg-gradient-to-br from-legoGrey to-white py-20">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <p class="text-xs font-semibold tracking-[0.2em] text-legoRed mb-3 uppercase">Need More Help?</p>
+            <h2 class="text-4xl md:text-5xl font-black text-legoNavy mb-6">We're Here for You</h2>
+            <p class="text-gray-600 text-lg mb-6">
+              Can't find what you're looking for? Our support team is ready to assist you with any questions about your orders, account, or shopping experience.
+            </p>
+            <div class="flex gap-4">
+              <a href="#" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-legoYellow text-legoNavy font-bold hover:scale-105 transition-transform">
+                Contact Us
+              </a>
+              <a href="#" class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-legoNavy text-legoNavy font-bold hover:bg-legoNavy hover:text-white transition-colors">
+                Live Chat
+              </a>
+            </div>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800" alt="LEGO support" class="rounded-2xl shadow-2xl w-full h-96 object-cover" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="max-w-6xl mx-auto px-4 py-20">
+      <div class="text-center mb-12">
+        <p class="text-xs font-semibold tracking-[0.2em] text-legoRed mb-3 uppercase">Quick Links</p>
+        <h2 class="text-4xl md:text-5xl font-black text-legoNavy mb-4">Explore More</h2>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6">
+        <a href="products.html" class="bg-white rounded-2xl p-6 text-center border-2 border-transparent hover:border-legoYellow transition-colors shadow-lg hover:scale-105 transition-transform">
+          <span class="text-4xl mb-4 block">🛒</span>
+          <h3 class="font-bold text-legoNavy mb-2">Shop</h3>
+          <p class="text-sm text-gray-600">Browse products</p>
+        </a>
+        <a href="cart.html" class="bg-white rounded-2xl p-6 text-center border-2 border-transparent hover:border-legoOrange transition-colors shadow-lg hover:scale-105 transition-transform">
+          <span class="text-4xl mb-4 block">🛍️</span>
+          <h3 class="font-bold text-legoNavy mb-2">Cart</h3>
+          <p class="text-sm text-gray-600">View your items</p>
+        </a>
+        <a href="login.html" class="bg-white rounded-2xl p-6 text-center border-2 border-transparent hover:border-legoRed transition-colors shadow-lg hover:scale-105 transition-transform">
+          <span class="text-4xl mb-4 block">👤</span>
+          <h3 class="font-bold text-legoNavy mb-2">Account</h3>
+          <p class="text-sm text-gray-600">Manage profile</p>
+        </a>
+        <a href="about.html" class="bg-white rounded-2xl p-6 text-center border-2 border-transparent hover:border-legoNavy transition-colors shadow-lg hover:scale-105 transition-transform">
+          <span class="text-4xl mb-4 block">ℹ️</span>
+          <h3 class="font-bold text-legoNavy mb-2">About</h3>
+          <p class="text-sm text-gray-600">Learn more</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-legoNavy py-20">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Still Have Questions?</h2>
+        <p class="text-xl text-gray-300 mb-8">Our team is here to help you with anything you need.</p>
+        <a href="#" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-legoYellow text-legoNavy text-lg font-bold shadow-lg hover:scale-105 transition-transform">
+          Get in Touch
+        </a>
+      </div>
+    </section>
+  </main>
+
+    <footer class="bg-[#0d1425] text-[#a0a7b5] py-16 px-[10%] mt-auto">
+        <div class="flex flex-wrap justify-between gap-10 pb-12">
+            <div class="flex-1 min-w-[250px]">
+                <div class="bg-orange-400 w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xl mb-6">★</div>
+                <p class="text-sm leading-relaxed">Inspiring the builders of tomorrow since 1995. Explore our universe of creative building sets.</p>
+            </div>
+            <div class="flex gap-12 flex-wrap">
+                <div>
+                    <h4 class="text-white uppercase text-xs font-bold mb-6">Support</h4>
+                    <ul class="text-sm space-y-3"><li><a href="#" class="hover:text-white">Contact Us</a></li><li><a href="#" class="hover:text-white">Shipping</a></li></ul>
+                </div>
+                <div>
+                    <h4 class="text-white uppercase text-xs font-bold mb-6">Account</h4>
+                    <ul class="text-sm space-y-3"><li><a href="#" class="hover:text-white">Wishlist</a></li><li><a href="#" class="hover:text-white">Track Order</a></li></ul>
+                </div>
+            </div>
+            <div class="flex-1 min-w-[280px]">
+                <h4 class="text-white uppercase text-xs font-bold mb-6">Newsletter</h4>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="Your email" class="bg-[#1a233a] border-none rounded-md p-3 flex-grow text-sm text-white focus:ring-1 focus:ring-orange-400">
+                    <button class="bg-orange-400 text-white px-5 py-2 rounded-md font-bold text-sm">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 flex flex-wrap justify-between text-[11px]">
+            <p>© 2026 BrickWorld Systems A/S. All rights reserved.</p>
+            <div class="flex gap-6"><a href="#" class="hover:text-white">Privacy Policy</a><a href="#" class="hover:text-white">Terms</a></div>
+        </div>
+    </footer>
+
+    <script src="cart-system.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const token = localStorage.getItem("token");
+            const accountLink = document.getElementById("accountLink");
+            const accountIcon = document.getElementById("accountIcon");
+            if (token && accountLink && accountIcon) {
+                accountLink.href = "profile.html";
+                accountIcon.classList.remove("bg-gray-600");
+                accountIcon.classList.add("bg-legoYellow");
+            }
+            if (typeof updateCartBadge === "function") {
+                const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+                const badge = document.getElementById("cartCount");
+                if (badge) {
+                    const totalQty = cart.reduce(function (sum, item) { return sum + (item.qty || 1); }, 0);
+                    badge.innerText = totalQty;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
